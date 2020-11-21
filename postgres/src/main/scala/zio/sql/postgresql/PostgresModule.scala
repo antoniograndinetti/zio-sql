@@ -1,5 +1,7 @@
 package zio.sql.postgresql
 
+import java.time.{LocalTime}
+
 import zio.sql.Jdbc
 
 /**
@@ -8,6 +10,7 @@ trait PostgresModule extends Jdbc { self =>
 
   object PostgresFunctionDef {
     val Sind = FunctionDef[Double, Double](FunctionName("sind"))
+    val CurrentTime = FunctionDef[Option[Int], LocalTime](FunctionName("current_time"))
   }
 
   override def renderRead(read: self.Read[_]): String = {
